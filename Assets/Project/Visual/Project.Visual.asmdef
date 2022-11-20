@@ -1,3 +1,16 @@
 {
-	"name": "Project.Visual"
+    "name": "Project.Visual",
+    "rootNamespace": "",
+    "references": [
+        "GUID:d6920daad38c2d129a323fe6705548ca"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
