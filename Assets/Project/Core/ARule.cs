@@ -1,13 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace AMGOLCore
 {
-
     public abstract class ARule
     {
-        
+        public abstract bool WillSurvive(ATile tile);
     }
 }
 
