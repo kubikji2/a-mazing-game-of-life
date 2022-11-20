@@ -39,6 +39,7 @@ namespace AMGOLCore
             }
         }
 
+        
         public void PrintRule()
         {
             string s = "RULE: \n";
@@ -47,9 +48,19 @@ namespace AMGOLCore
             Debug.Log(s);
         }
 
+
+        // OVERRIDE
         public override bool WillSurvive(ATile tile)
         {
-            throw new System.NotImplementedException();
+            return WillSurvive(tile.IsAlive(), tile.GetNeighbors().Count);
+        }
+
+        // OVERRIDE
+        public override bool WillSurvive(bool is_alive, int alive_neighbors_count)
+        {
+            return  is_alive ?
+                        alive_neighbors_count <= _survive_max && _survive_mask[alive_neighbors_count] :
+                        alive_neighbors_count <= _born_max && _born_mask[alive_neighbors_count];           
         }
     }
 }
