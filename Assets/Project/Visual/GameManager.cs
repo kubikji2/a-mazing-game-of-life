@@ -18,19 +18,20 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         _InitGrid();
-
-        InvokeRepeating(nameof(_UpdateGrid), 0.01f, 0.25f);
+        // 
+        InvokeRepeating(nameof(_UpdateGrid), 0.01f, 0.1f);
     }
 
     private void _InitGrid()
     {
-        _grid = new RegularGrid(new Vector2Int(200,100), 6);
+        _grid = new RegularGrid(new Vector2Int(200,100), 8);
         //_grid.PrintNeighCount();
         _grid.InitializeGrid(new UniformRandomizer());
 
         _grid_visualizer.InitializeGrid(_grid);
 
         _rule = new BinaryRule(new List<int>(new int[] {2,3}),new List<int>(new int[] {3}));
+        //_rule.PrintRule();
 
     }
 
