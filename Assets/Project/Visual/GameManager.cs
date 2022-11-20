@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     {
         RegularGrid grid = new RegularGrid(new Vector2Int(10,5), 6);
         grid.PrintNeighCount();
+        grid.InitializeGrid(new UniformRandomizer());
+        grid.PrintGrid();
     }
 
     // Update is called once per frame
