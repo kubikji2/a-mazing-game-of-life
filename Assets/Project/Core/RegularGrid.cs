@@ -176,6 +176,16 @@ namespace AMGOLCore
             _grid = new_grid;
         }
 
+        public Vector2Int GetSize()
+        {
+            return _size;
+        }
+
+        public int[,] GetGrid()
+        {
+            return _grid;
+        }
+
     }
 
 }

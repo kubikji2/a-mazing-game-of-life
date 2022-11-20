@@ -6,6 +6,10 @@ using AMGOLCore;
 
 public class GameManager : MonoBehaviour
 {
+
+    [SerializeField]
+    private GridVisualizer _grid_visualizer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +21,8 @@ public class GameManager : MonoBehaviour
         RegularGrid grid = new RegularGrid(new Vector2Int(10,5), 6);
         grid.PrintNeighCount();
         grid.InitializeGrid(new UniformRandomizer());
-        grid.PrintGrid();
+        //grid.PrintGrid();
+        _grid_visualizer.InitializeGrid(grid);
 
         BinaryRule convay_rule = new BinaryRule(new List<int>(new int[] {2,3}),new List<int>(new int[] {3}));
         convay_rule.PrintRule();
@@ -36,6 +41,7 @@ public class GameManager : MonoBehaviour
 
         grid.UpdateGrid(convay_rule);
         grid.PrintGrid();
+        _grid_visualizer.Redraw();
     }
 
     // Update is called once per frame
