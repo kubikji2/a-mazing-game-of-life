@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace AMGOLCore
 {
@@ -8,6 +6,9 @@ namespace AMGOLCore
     {
         // Print current grid
         public abstract void PrintGrid();
+
+        // Randomize grid using ARandomizer
+        public abstract void InitializeGrid(ARandomizer randomizer);
 
         // Updates grid using ARule
         public abstract void UpdateGrid(ARule rule);

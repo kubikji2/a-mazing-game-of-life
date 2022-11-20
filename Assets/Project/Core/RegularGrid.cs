@@ -128,6 +128,17 @@ namespace AMGOLCore
             Debug.Log(s);   
         }
 
+        public override void InitializeGrid(ARandomizer randomizer)
+        {
+            for (int y = 0; y < _size.y; y++)
+            {
+                for (int x = 0; x < _size.x; x++)
+                {
+                    _grid[x,y] = randomizer.IsAlive() ?  1 : 0;
+                }
+            }
+        }
+
         // OVERRIDED
         public override List<ATile> GetTiles()
         {
