@@ -331,7 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cell_template: {fileID: 585330206981364785, guid: 0e9588ba52a1aa580820bf38633c2a10, type: 3}
-  cell_size: {x: 1, y: 1}
+  cell_size: {x: 0.1, y: 0.1}
 --- !u!4 &1362587178
 Transform:
   m_ObjectHideFlags: 0
