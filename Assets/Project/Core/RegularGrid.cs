@@ -68,6 +68,23 @@ namespace AMGOLCore
         }
 
 
+        private int _AliveNeighborsCount(Vector2Int coord)
+        {
+            int ret = 0;
+            if (this._IsInGrid(coord))
+            {
+                foreach(Vector2Int neigh in GetNeighborCoords(coord))
+                {
+                    if(_IsInGrid(neigh))
+                    {
+                        ret += _grid[neigh.x,neigh.y];
+                    }
+                }
+            }
+            return ret;
+        }
+
+
         public List<RegularTile> GetNeighborsOf(Vector2Int coord)
         {
             List<RegularTile> ret = new List<RegularTile>();
@@ -148,7 +165,15 @@ namespace AMGOLCore
         // OVERRIDED
         public override void UpdateGrid(ARule rule)
         {
-            throw new System.NotImplementedException();
+            int[,] new_grid = new int[_size.x,_size.y];
+            for (int y = 0; y < _size.y; y++)
+            {
+                for (int x = 0; x < _size.x; x++)
+                {
+                    new_grid[x,y] = rule.WillSurvive(_grid[x,y] == 1, _AliveNeighborsCount(new Vector2Int(x,y))) ? 1 : 0;
+                }
+            }
+            _grid = new_grid;
         }
 
     }

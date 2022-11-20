@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
         BinaryRule convay_rule = new BinaryRule(new List<int>(new int[] {2,3}),new List<int>(new int[] {3}));
         convay_rule.PrintRule();
-
+        
         /*
         for(int i = 0; i < 8; i++)
         {
@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour
             Debug.Log("DEAD (" + i + "): " + convay_rule.WillSurvive(false, i));
         }
         */
+
+        grid.UpdateGrid(convay_rule);
+        grid.PrintGrid();
     }
 
     // Update is called once per frame
