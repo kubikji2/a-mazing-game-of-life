@@ -30,7 +30,6 @@ namespace AMGOLCore
 
             this._grid = new int[size.x,size.y];
             this._tile_grid = new RegularTile[size.x,size.y];
-
             _PopulateGrid();
         }
 
@@ -88,13 +87,13 @@ namespace AMGOLCore
         public List<RegularTile> GetNeighborsOf(Vector2Int coord)
         {
             List<RegularTile> ret = new List<RegularTile>();
-            if (this._IsInGrid(coord))
+            if (_IsInGrid(coord))
             {
                 foreach(Vector2Int neigh in GetNeighborCoords(coord))
                 {
                     if(_IsInGrid(neigh))
                     {
-                        ret.Add(this._tile_grid[neigh.x,neigh.y]);
+                        ret.Add(_tile_grid[neigh.x,neigh.y]);
                     }
                 }
             }
@@ -103,7 +102,7 @@ namespace AMGOLCore
 
         private bool _IsInGrid(Vector2Int coord)
         {
-            return 0 <= coord.x && coord.x < this._size.x && 0 <= coord.y && coord.y < this._size.y;
+            return 0 <= coord.x && coord.x < _size.x && 0 <= coord.y && coord.y < _size.y;
         }
 
         private List<Vector2Int> GetNeighborCoords(Vector2Int center)

@@ -39,7 +39,7 @@ namespace AMGOLCore
             }
         }
 
-        
+
         public void PrintRule()
         {
             string s = "RULE: \n";
