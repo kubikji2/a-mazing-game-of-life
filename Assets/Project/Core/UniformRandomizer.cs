@@ -11,7 +11,7 @@ namespace AMGOLCore
 
         public override bool IsAlive()
         {
-            return Random.Range(0,1) < 0.5f;
+            return Random.Range(0f,1f) < 0.5f;
         }
     }
 }
