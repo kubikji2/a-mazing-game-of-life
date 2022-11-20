@@ -13,11 +13,11 @@ namespace AMGOLCore
 
         private int _neigbors_count;
 
-        private List<Vector2Int> offsets;
+        private List<Vector2Int> _offsets = new List<Vector2Int>();
+
+        private List<ATile> _tiles = new List<ATile>();
 
         private int[,] _grid;
-
-        private List<ATile> _tiles;
 
         private RegularTile[,] _tile_grid;
 
@@ -38,19 +38,19 @@ namespace AMGOLCore
         {
             // default setting is 4-neighborhood
             Vector2Int[] neight4 = {new Vector2Int(-1,0),new Vector2Int(1,0), new Vector2Int(0,-1), new Vector2Int(0,1)};
-            this.offsets.AddRange(neight4);
+            this._offsets.AddRange(neight4);
 
             // in case of hexagonal (and 8-neightborhood) grid, left diagonal positions are added
             if (this._neigbors_count > 4)
             {
-                this.offsets.Add(new Vector2Int(-1,1));
-                this.offsets.Add(new Vector2Int(-1,-1));
+                this._offsets.Add(new Vector2Int(-1,1));
+                this._offsets.Add(new Vector2Int(-1,-1));
             }
             // in case of 8-neigborhood, right diagonal positions are added too
             if (this._neigbors_count > 6)
             {
-                this.offsets.Add(new Vector2Int(1,1));
-                this.offsets.Add(new Vector2Int(1,-1));
+                this._offsets.Add(new Vector2Int(1,1));
+                this._offsets.Add(new Vector2Int(1,-1));
             }
         }
 
@@ -92,17 +92,40 @@ namespace AMGOLCore
         private List<Vector2Int> GetNeighborCoords(Vector2Int center)
         {
             List<Vector2Int> coords = new List<Vector2Int>();
-            foreach (Vector2Int offset in this.offsets)
+            foreach (Vector2Int offset in this._offsets)
             {
                 coords.Add(center + offset);
             }
             return coords;
         }
 
+        public void PrintNeighCount()
+        {
+            string s = "";
+            for(int y = this._size.y-1; y >= 0; y--)
+            {
+                for(int x = 0; x < this._size.x; x++)
+                {
+                    s += string.Format("{0:d} ", GetNeighborsOf(new Vector2Int(x,y)).Count);
+                }
+                s += "\n";
+            }
+            Debug.Log(s);            
+        }
+
         // OVERRIDED
         public override void PrintGrid()
         {
-            throw new System.NotImplementedException();
+            string s = "";
+            for(int y = this._size.y-1; y >= 0; y--)
+            {
+                for(int x = 0; x < this._size.x; x++)
+                {
+                    s += string.Format("{0:d} ", this._grid[x,y]);
+                }
+                s += "\n";
+            }
+            Debug.Log(s);   
         }
 
         // OVERRIDED
