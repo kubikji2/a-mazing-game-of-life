@@ -10,37 +10,34 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GridVisualizer _grid_visualizer;
 
+    private BinaryRule _rule;
+
+    private RegularGrid _grid;
+
     // Start is called before the first frame update
     void Start()
     {
-        this._Test();
+        _InitGrid();
+
+        InvokeRepeating(nameof(_UpdateGrid), 0.01f, 0.25f);
     }
 
-    private void _Test()
+    private void _InitGrid()
     {
-        RegularGrid grid = new RegularGrid(new Vector2Int(10,5), 6);
-        grid.PrintNeighCount();
-        grid.InitializeGrid(new UniformRandomizer());
-        //grid.PrintGrid();
-        _grid_visualizer.InitializeGrid(grid);
+        _grid = new RegularGrid(new Vector2Int(200,100), 6);
+        //_grid.PrintNeighCount();
+        _grid.InitializeGrid(new UniformRandomizer());
 
-        BinaryRule convay_rule = new BinaryRule(new List<int>(new int[] {2,3}),new List<int>(new int[] {3}));
-        convay_rule.PrintRule();
-        
-        /*
-        for(int i = 0; i < 8; i++)
-        {
-            Debug.Log("ALIVE (" + i + "): " + convay_rule.WillSurvive(true, i));
-        }
+        _grid_visualizer.InitializeGrid(_grid);
 
-        for(int i = 0; i < 8; i++)
-        {
-            Debug.Log("DEAD (" + i + "): " + convay_rule.WillSurvive(false, i));
-        }
-        */
+        _rule = new BinaryRule(new List<int>(new int[] {2,3}),new List<int>(new int[] {3}));
 
-        grid.UpdateGrid(convay_rule);
-        grid.PrintGrid();
+    }
+
+    private void _UpdateGrid()
+    {
+        _grid.UpdateGrid(_rule);
+        //_grid.PrintGrid();
         _grid_visualizer.Redraw();
     }
 
